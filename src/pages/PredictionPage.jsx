@@ -79,10 +79,10 @@ const conditionDetails = {
   },
   tumor: {
     title: "Kidney Tumor",
-    description: "Abnormal growths in kidney tissue, which may be benign or malignant (renal cell carcinoma being most common cancerous type).",
+    description: "Abnormal growths in kidney tissue, which may be benign or malignant.",
     types: [
       "Benign tumors (e.g., renal adenoma, angiomyolipoma)",
-      "Malignant tumors (e.g., renal cell carcinoma, Wilms' tumor in children)"
+      "Malignant tumors (e.g., renal cell carcinoma, Wilms' tumor)"
     ],
     symptoms: [
       "Blood in urine (hematuria)",
@@ -93,11 +93,11 @@ const conditionDetails = {
       "Swelling in ankles/legs"
     ],
     precautions: [
-      "Immediate consultation with urologist/oncologist",
-      "Regular follow-up imaging",
-      "Smoking cessation",
-      "Blood pressure management",
-      "Healthy diet rich in fruits and vegetables",
+      "Consult with urologist/oncologist",
+      "Regular imaging follow-up",
+      "Stop smoking",
+      "Control blood pressure",
+      "Healthy diet",
       "Genetic testing if family history"
     ]
   }
@@ -125,7 +125,6 @@ const PredictionPage = () => {
       return matchedHospitals.slice(0, 3);
     }
     
-    // Try matching by country if city not found
     const countryHospitals = hospitalsData.filter(hospital => 
       hospital.Location.toLowerCase().includes(searchTerm.split(',')[0].trim())
     );
@@ -157,10 +156,12 @@ const PredictionPage = () => {
     formData.append("location", location);
 
     try {
-      // Make actual API call to your prediction endpoint
-      const res = await axios.post("http://localhost:5000/predict", formData, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+      // ✅ UPDATED BACKEND URL
+      const res = await axios.post(
+        "https://kedney-deseases.onrender.com/predict",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
       
       const conditionKey = res.data.prediction.toLowerCase();
       const conditionData = conditionDetails[conditionKey] || conditionDetails.normal;
@@ -172,13 +173,14 @@ const PredictionPage = () => {
         location,
         hospitals: matchedHospitals.map(hospital => ({
           name: hospital.Name,
-          distance: (Math.random() * 20 + 1).toFixed(1), // Simulated distance
+          distance: (Math.random() * 20 + 1).toFixed(1),
           address: hospital.Address,
           doctor: hospital["Doctor name"],
           description: hospital.Description,
           speciality: hospital["Speciality tags"]
         }))
       });
+
     } catch (err) {
       console.error("Prediction error:", err);
       setError(err.response?.data?.error || "Failed to get prediction. Please try again.");
@@ -213,6 +215,7 @@ const PredictionPage = () => {
                 <label htmlFor="medical-image-upload" className="file-input-label">
                   Choose Image
                 </label>
+
                 {preview && (
                   <div className="image-preview-container">
                     <span className="preview-label">Selected Image:</span>
@@ -286,12 +289,17 @@ const PredictionPage = () => {
       </div>
 
       <div className="medical-details">
-        {result ? (
+        {!result ? (
+          <div className="default-message">
+            <h3>Kidney Health Information</h3>
+            <p>Upload an image and enter your location to get your diagnosis.</p>
+          </div>
+        ) : (
           <>
             <div className="condition-details">
               <h3 className="condition-title">{result.conditionData.title}</h3>
               <p className="condition-description">{result.conditionData.description}</p>
-              
+
               <div className="details-grid">
                 <div className="details-section">
                   <h4 className="section-title">
@@ -299,24 +307,24 @@ const PredictionPage = () => {
                     Key Characteristics
                   </h4>
                   <ul className="details-list">
-                    {result.conditionData.characteristics?.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {result.conditionData.characteristics?.map((item, idx) => (
+                      <li key={idx}>{item}</li>
                     ))}
                   </ul>
                 </div>
-                
+
                 <div className="details-section">
                   <h4 className="section-title">
                     <FaClinicMedical className="section-icon" />
                     Common Symptoms
                   </h4>
                   <ul className="details-list">
-                    {result.conditionData.symptoms?.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {result.conditionData.symptoms?.map((item, idx) => (
+                      <li key={idx}>{item}</li>
                     ))}
                   </ul>
                 </div>
-                
+
                 {result.conditionData.types && (
                   <div className="details-section">
                     <h4 className="section-title">
@@ -324,21 +332,21 @@ const PredictionPage = () => {
                       Types
                     </h4>
                     <ul className="details-list">
-                      {result.conditionData.types.map((item, index) => (
-                        <li key={index}>{item}</li>
+                      {result.conditionData.types.map((item, idx) => (
+                        <li key={idx}>{item}</li>
                       ))}
                     </ul>
                   </div>
                 )}
-                
+
                 <div className="details-section">
                   <h4 className="section-title">
                     <FaUserMd className="section-icon" />
                     Recommended Precautions
                   </h4>
                   <ul className="details-list">
-                    {result.conditionData.precautions?.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {result.conditionData.precautions?.map((item, idx) => (
+                      <li key={idx}>{item}</li>
                     ))}
                   </ul>
                 </div>
@@ -348,12 +356,12 @@ const PredictionPage = () => {
             <div className="hospitals-section">
               <h3 className="hospitals-title">
                 <FaHospital className="title-icon" />
-                Recommended Hospitals nearer to {result.location}
+                Recommended Hospitals near {result.location}
               </h3>
-              
+
               <div className="hospitals-grid">
-                {result.hospitals.map((hospital, index) => (
-                  <div key={index} className="hospital-card">
+                {result.hospitals.map((hospital, idx) => (
+                  <div key={idx} className="hospital-card">
                     <div className="hospital-header">
                       <FaHospital className="hospital-icon" />
                       <h4>{hospital.name}</h4>
@@ -361,9 +369,7 @@ const PredictionPage = () => {
                     <div className="hospital-details">
                       <p><FaMapMarkerAlt className="detail-icon" /> {hospital.address}</p>
                       <p><FaUserMd className="detail-icon" /> {hospital.doctor}</p>
-                      <p className="speciality">
-                        <strong>Speciality:</strong> {hospital.speciality}
-                      </p>
+                      <p className="speciality"><strong>Speciality:</strong> {hospital.speciality}</p>
                       <p className="description">{hospital.description}</p>
                       <p className="distance">{hospital.distance} km away</p>
                     </div>
@@ -372,17 +378,6 @@ const PredictionPage = () => {
               </div>
             </div>
           </>
-        ) : (
-          <div className="default-message">
-            <h3>Kidney Health Information</h3>
-            <p>Upload a medical image and enter your location to get a diagnosis and detailed information about your kidney health.</p>
-            <div className="default-image">
-              <img 
-                src="https://5.imimg.com/data5/GLADMIN/Default/2023/2/AZ/XK/YQ/12972674/human-kidney-3d-model.jpg" 
-                alt="Human Kidney 3D Model" 
-              />
-            </div>
-          </div>
         )}
       </div>
     </div>
