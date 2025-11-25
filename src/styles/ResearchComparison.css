@@ -1,0 +1,393 @@
+/* Base Styles */
+.research-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  color: #2c3e50;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: #3498db;
+}
+
+/* Research Papers Section */
+.research-section {
+  margin-bottom: 3rem;
+}
+
+.paper-card {
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.paper-card.active {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.paper-button {
+  width: 100%;
+  padding: 1.2rem;
+  background: #f8f9fa;
+  border: none;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.paper-button:hover {
+  background: #e8f4fc;
+}
+
+.paper-button h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: #3498db;
+}
+
+.paper-content {
+  padding: 1.5rem;
+  background: white;
+}
+
+.paper-meta {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.paper-meta p {
+  margin: 0.3rem 0;
+}
+
+.strengths-drawbacks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .strengths-drawbacks {
+    grid-template-columns: 1fr;
+  }
+}
+
+.strengths, .drawbacks {
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.strengths {
+  background: #e8f8f5;
+  border-left: 4px solid #2ecc71;
+}
+
+.drawbacks {
+  background: #fef9e7;
+  border-left: 4px solid #f39c12;
+}
+
+.clinical-relevance {
+  background: #ebf5fb;
+  padding: 1rem;
+  border-radius: 5px;
+  border-left: 4px solid #3498db;
+}
+
+/* Comparative Analysis */
+.comparative-analysis {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #dfe6e9;
+}
+
+th {
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+tr:hover {
+  background: #e8f4fc;
+}
+
+.key-takeaways {
+  background: #e8f4fc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+}
+
+.key-takeaways ul {
+  padding-left: 1.5rem;
+}
+
+/* Hospital Section */
+.hospital-section {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.hospital-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.hospital-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hospital-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.hospital-card h3 {
+  background: #3498db;
+  color: white;
+  padding: 1rem;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.hospital-details {
+  padding: 1.2rem;
+}
+
+.hospital-details p {
+  margin: 0.6rem 0;
+}
+
+.hospital-description {
+  font-style: italic;
+  color: #555;
+  margin: 1rem 0 !important;
+}
+
+.hospital-meta {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px dashed #dfe6e9;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.pagination-button {
+  padding: 0.6rem 1.2rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.pagination-button:hover {
+  background: #2980b9;
+}
+
+.pagination-button:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.project-flow {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.project-flow h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.flow-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-number {
+  background-color: #3498db;
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+.step-content {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  flex-grow: 1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.step-content h3 {
+  margin-top: 0;
+  color: #2980b9;
+}
+
+.step-content p {
+  margin-bottom: 0;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .flow-step {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step-content {
+    text-align: center;
+  }
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .research-container {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hospital-cards-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .flow-step {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .step-number {
+    align-self: flex-start;
+  }
+  
+  .pagination-controls {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+/* Animations */
+.paper-card {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hospital-card {
+  animation: slideIn 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+.hospital-card:nth-child(1) { animation-delay: 0.1s; }
+.hospital-card:nth-child(2) { animation-delay: 0.2s; }
+.hospital-card:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}

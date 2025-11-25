@@ -1,0 +1,32 @@
+.top-hospitals-list {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .top-hospitals-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .hospital-card {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Adjust this to fit the desired layout */
+  }
+  
+  .hospital-card strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .hospital-card em {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
